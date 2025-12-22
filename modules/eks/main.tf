@@ -9,6 +9,25 @@ module "eks" {
   vpc_id                   = var.vpc_id
   subnet_ids               = var.subnet_ids
 
+  cluster_endpoint_public_access  = true
+  cluster_endpoint_private_access = true
+
+  access_entries = {
+  akash_admin = {
+    principal_arn = "arn:aws:iam::178502900821:user/akash"
+
+    policy_associations = {
+      admin = {
+        policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+        access_scope = {
+          type = "cluster"
+        }
+      }
+    }
+  }
+  }
+
+
   enable_irsa = true
 
   # EKS Managed Node Group(s)

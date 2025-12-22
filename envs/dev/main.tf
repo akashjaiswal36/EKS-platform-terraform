@@ -19,4 +19,14 @@ module "eks" {
     cluster_version = var.cluster_version
     vpc_id          = module.vpc.vpc_id
     subnet_ids      = module.vpc.private_subnets
+
+    manage_aws_auth_configmap = true
+
+    aws_auth_users = [
+        {
+        userarn  = "arn:aws:iam::178502900821:user/akash"
+        username = "akash"
+        groups   = ["system:masters"]
+        }
+    ]
 }
