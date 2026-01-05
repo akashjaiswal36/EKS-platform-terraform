@@ -3,7 +3,7 @@ module "eks" {
   version = "20.8.4"
 
   cluster_name    = var.cluster_name
-  cluster_version = var.cluster_version
+  cluster_version = "1.34"
 
 
   vpc_id                   = var.vpc_id
